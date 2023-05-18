@@ -41,4 +41,12 @@ public class MedicoService {
         medicoRepository.saveAllAndFlush(medicoList);
     }
 
+    public boolean deleteById(Integer id) {
+        if (medicoRepository.existsById(id)) {
+            medicoRepository.deleteById(id);
+            return !medicoRepository.existsById(id);
+        }
+        return false;
+    }
+
 }

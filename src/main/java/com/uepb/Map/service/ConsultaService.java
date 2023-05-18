@@ -36,4 +36,12 @@ public class ConsultaService {
     public void saveAllAndFlush(List<Consulta> consultaList) {
         consultaRepository.saveAllAndFlush(consultaList);
     }
+
+    public boolean deleteById(Integer id) {
+        if (consultaRepository.existsById(id)) {
+            consultaRepository.deleteById(id);
+            return !consultaRepository.existsById(id);
+        }
+        return false;
+    }
 }

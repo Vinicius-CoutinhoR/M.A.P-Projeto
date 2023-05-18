@@ -36,4 +36,12 @@ public class PacienteService {
     public void saveAllAndFlush(List<Paciente> pacienteList) {
         pacienteRepository.saveAllAndFlush(pacienteList);
     }
+
+    public boolean deleteById(Integer id) {
+        if (pacienteRepository.existsById(id)) {
+            pacienteRepository.deleteById(id);
+            return !pacienteRepository.existsById(id);
+        }
+        return false;
+    }
 }

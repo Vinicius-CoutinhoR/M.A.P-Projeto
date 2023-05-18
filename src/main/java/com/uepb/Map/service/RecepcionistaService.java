@@ -1,10 +1,8 @@
 package com.uepb.Map.service;
 
-import com.uepb.Map.model.Paciente;
 import com.uepb.Map.model.Recepcionista;
 import com.uepb.Map.repository.RecepcionistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +35,13 @@ public class RecepcionistaService {
 
     public void saveAllAndFlush(List<Recepcionista> recepcionistaList) {
         recepcionistaRepository.saveAllAndFlush(recepcionistaList);
+    }
+
+    public boolean deleteById(Integer id) {
+        if (recepcionistaRepository.existsById(id)) {
+            recepcionistaRepository.deleteById(id);
+            return !recepcionistaRepository.existsById(id);
+        }
+        return false;
     }
 }
